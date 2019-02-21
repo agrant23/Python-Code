@@ -1,0 +1,15 @@
+#Basic way to fit an array of data with a multi-variate polynomial using the Python libraries given below
+
+import numpy
+import matplotlib.pyplot as plt
+import multipolyfit as mpf
+
+data = [[1,2],[5,7],[8,8],[11,9],[12,10],[17,11],[21,14]]
+x, y = zip(*data)
+plt.plot(x, y, 'kx')
+
+stacked_x = numpy.array([x,x+1,x-1])
+coeffs = mpf(stacked_x, y, deg) 
+x2 = numpy.arange(min(x)-1, max(x)+1, .01) 
+y2 = numpy.polyval(coeffs, x2)
+plt.plot(x2, y2, label="deg=3")
